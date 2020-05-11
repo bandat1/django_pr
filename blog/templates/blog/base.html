@@ -1,0 +1,34 @@
+<!doctype html>
+<!-- нужно сообщить нашему HTML-шаблону о том, что мы добавили CSS -->
+{% load static %}
+<html>
+    <head>
+        <title>Django project</title>
+		<link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		
+		<!-- сказали нашему шаблону, где находится наш CSS файл -->
+		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    
+	</head>
+    <body>
+		<div class="page-header">
+			{% if user.is_authenticated %}
+				<!-- Класс glyphicon glyphicon-plus определён в используемой нами теме bootstrap — таким образом мы выведем значок плюса. -->
+				<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+			{% endif %}
+			<h1><a href="/">Django project (Blog)</a></h1>
+		</div>
+		<div class="content container">
+			<div class="row">
+				<div class="col-md-8">
+				{% block content %}
+				{% endblock %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

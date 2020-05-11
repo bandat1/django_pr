@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+<!-- Cинтаксис фигурных скобок со знаком процента означает использование тегов шаблонов Django. -->
+{% block content %}
+	{% for post in posts %}
+		<div class="post">
+			<div class="date">
+				{{ post.published_date }}
+			</div>
+			<!-- Параметр post_detail означает, что Django будет искать URL с именем post_detail в файле blog.urls.py.
+			А что насчёт pk=post.pk? pk — это сокращение от primary key (первичный ключ). Он уникальным образом определяет каждую запись в базе данных. 
+			Поскольку мы не задали первичного ключа в нашей модели Post, Django создал такой ключ за нас 
+			(по умолчанию это порядковый номер, то есть 1, 2, 3…) и добавил поле pk к каждой записи блога. 
+			Для получения первичного ключа мы напишем post.pk — точно так же, как мы получали значения остальных полей (title, author и т.д.) нашего объекта Post. -->
+			<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+			
+			<p>{{ post.text|linebreaksbr }}</p>
+		</div>
+	{% endfor %}
+{% endblock %}
