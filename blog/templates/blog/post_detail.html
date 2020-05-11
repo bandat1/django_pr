@@ -6,6 +6,9 @@
             <div class="date">
                 {{ post.published_date }}
             </div>
+		{% else %}
+			<!-- If the condition is not fulfilled (so if there is no published_date), then we want to do the line: -->
+			<a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
         {% endif %}
 		<!-- Чтобы ссылка показывалась только пользователям, вошедшим в админку. Кто попало не сможет редактировать запись.
 		Ссылка будет отправлена в браузер, только если запрашивающий страницу пользователь вошёл в систему.-->

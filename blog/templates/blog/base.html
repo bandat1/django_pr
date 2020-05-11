@@ -16,9 +16,13 @@
 	</head>
     <body>
 		<div class="page-header">
+			<!-- Чтобы ссылка показывалась только пользователям, вошедшим в админку.
+			 Ссылка будет отправлена в браузер, только если запрашивающий страницу пользователь вошёл в систему.-->
 			{% if user.is_authenticated %}
 				<!-- Класс glyphicon glyphicon-plus определён в используемой нами теме bootstrap — таким образом мы выведем значок плюса. -->
 				<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+				<!-- show our list of drafts -->
+				<a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
 			{% endif %}
 			<h1><a href="/">Django project (Blog)</a></h1>
 		</div>
