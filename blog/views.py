@@ -74,3 +74,17 @@ def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect('post_detail', pk=pk)
+
+
+def post_remove(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete() # Every Django model can be deleted by .delete()
+    return redirect('post_list') # after deleting a post we want to go to the webpage with a list of posts
+
+"""
+
+def post_search(request): # new
+
+    posts = Post.objects.filter(published_date__isnull=True).order_by('created_date') # new
+    return render(request, 'blog/post_search_list.html', {'posts': posts}) # new
+"""

@@ -3,6 +3,9 @@
 {% load static %}
 <html>
     <head>
+	<!-- Метатеги используются для хранения информации предназначенной для браузеров и поисковых систем.
+	Например, механизмы поисковых систем обращаются к метатегам для получения описания сайта, ключевых слов и других данных. -->
+		<meta charset="utf-8">
         <title>Django project</title>
 		<link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
 		
@@ -12,9 +15,18 @@
 		
 		<!-- сказали нашему шаблону, где находится наш CSS файл -->
 		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    
 	</head>
     <body>
+			<!-- функция проверки заполнения строки поиска -->
+			<script>
+			function validateForm() {
+    			var x = document.forms["myForm"]["fname"].value;
+    			if (x == "") {
+        			alert("Name must be filled out");
+        			return false;
+    			}
+			}
+		</script>
 		<div class="page-header">
 			<!-- Чтобы ссылка показывалась только пользователям, вошедшим в админку.
 			 Ссылка будет отправлена в браузер, только если запрашивающий страницу пользователь вошёл в систему.-->
@@ -25,6 +37,13 @@
 				<a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
 			{% endif %}
 			<h1><a href="/">Django project (Blog)</a></h1>
+			<!--строка поиска-->
+			<form name="myForm" action="/action_page.php"
+				onsubmit="return validateForm()" method="post">
+				Поиск: <input type="text" name="fname">
+				<input type="submit" value="Найти">
+			</form>
+
 		</div>
 		<div class="content container">
 			<div class="row">

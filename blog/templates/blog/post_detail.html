@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {% extends 'blog/base.html' %}
 
 {% block content %}
@@ -14,7 +15,9 @@
 		Ссылка будет отправлена в браузер, только если запрашивающий страницу пользователь вошёл в систему.-->
 		{% if user.is_authenticated %}
 			<!-- Класс glyphicon glyphicon-plus определён в используемой нами теме bootstrap, таким образом мы выведем знак редактирования. -->
-			<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>	
+			<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+			<!-- Добавляем знак удаления записи-->
+			<a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
         {% endif %}
 		<h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
